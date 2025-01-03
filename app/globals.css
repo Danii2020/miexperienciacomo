@@ -19,3 +19,7 @@ body {
   background: var(--background);
   font-family: 'Open Sans';
 }
+
+.prose > h2 {
+    font-size: 3rem;
+}
