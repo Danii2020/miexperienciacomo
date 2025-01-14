@@ -9,10 +9,6 @@ import FormatClearIcon from "@mui/icons-material/FormatClear";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
-import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
-import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import FormatAlignJustifyIcon from "@mui/icons-material/FormatAlignJustify";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import LinkOffIcon from "@mui/icons-material/LinkOff";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -172,33 +168,6 @@ const ToolBar = ({ editor }: { editor: Editor }) => {
                     selected={editor.isActive("blockquote")}
                 >
                     <FormatQuoteIcon />
-                </ToolbarButton>
-            </div>
-
-            <div className="flex gap-1">
-                <ToolbarButton
-                    onClick={() => editor.chain().focus().setTextAlign("left").run()}
-                    selected={editor.isActive({ textAlign: "left" })}
-                >
-                    <FormatAlignLeftIcon />
-                </ToolbarButton>
-                <ToolbarButton
-                    onClick={() => editor.chain().focus().setTextAlign("center").run()}
-                    selected={editor.isActive({ textAlign: "center" })}
-                >
-                    <FormatAlignCenterIcon />
-                </ToolbarButton>
-                <ToolbarButton
-                    onClick={() => editor.chain().focus().setTextAlign("right").run()}
-                    selected={editor.isActive({ textAlign: "right" })}
-                >
-                    <FormatAlignRightIcon />
-                </ToolbarButton>
-                <ToolbarButton
-                    onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-                    selected={editor.isActive({ textAlign: "justify" })}
-                >
-                    <FormatAlignJustifyIcon />
                 </ToolbarButton>
             </div>
         </div>

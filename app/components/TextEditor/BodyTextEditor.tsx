@@ -6,7 +6,6 @@ import {
   EditorContent
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
 import { EditorOptions } from "@tiptap/core";
@@ -24,7 +23,7 @@ const BodyTextEditor = ({ content }: Props) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "prose min-h-screen"
+        class: "prose min-h-screen p-4 bg-white rounded-xl"
       }
     },
     onUpdate: ({ editor: _editor }) => {
@@ -38,11 +37,9 @@ const BodyTextEditor = ({ content }: Props) => {
         }
       }),
       Image,
-      TextAlign,
       TextStyle,
       Underline,
       Link.configure({
-        openOnClick: false,
         validate: (href:string) => /^https?:\/\//.test(href)
       }),
       Youtube.configure({
