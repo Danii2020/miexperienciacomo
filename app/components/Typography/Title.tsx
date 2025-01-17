@@ -1,6 +1,6 @@
 type Props = {
     children: React.ReactNode;
-    className?: string; // Optional className prop
+    className?: string;
 };
 
 const Title = ({ children, className }: Props) => {
