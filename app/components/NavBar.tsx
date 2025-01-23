@@ -22,20 +22,20 @@ const NavBar = () => {
                     >
                         Acerca
                     </Link>
-                    <Link
+                    {/* <Link
                         href="/me/posts"
                         className="text-black text-2xl font-normal text-right px-4 py-2 rounded-md transition-all duration-200
                      hover:bg-gray-500 hover:bg-opacity-10"
                     >
                         Perfil
-                    </Link>
-                    {/* <button
+                    </Link> */}
+                    <button
                         className="text-black text-2xl font-normal px-4 py-2 rounded-md transition-all duration-200
                      hover:bg-gray-500 hover:bg-opacity-10"
                         onClick={() => setIsSignInModalOpen(true)}
                     >
                         Entrar
-                    </button> */}
+                    </button>
                 </nav>
             </aside>
         </>
