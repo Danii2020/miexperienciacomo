@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import SignInModal from "./Modals/SignInModal";
+import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 
 
 const NavBar = () => {
     const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+    const { user, signOut } = useAuth()
+
     return (
         <>
             {isSignInModalOpen && <SignInModal isOpen={isSignInModalOpen} closeModal={() => setIsSignInModalOpen(false)} />}
@@ -22,20 +25,36 @@ const NavBar = () => {
                     >
                         Acerca
                     </Link>
-                    {/* <Link
-                        href="/me/posts"
-                        className="text-black text-2xl font-normal text-right px-4 py-2 rounded-md transition-all duration-200
-                     hover:bg-gray-500 hover:bg-opacity-10"
-                    >
-                        Perfil
-                    </Link> */}
-                    <button
-                        className="text-black text-2xl font-normal px-4 py-2 rounded-md transition-all duration-200
-                     hover:bg-gray-500 hover:bg-opacity-10"
-                        onClick={() => setIsSignInModalOpen(true)}
-                    >
-                        Entrar
-                    </button>
+                    {
+                        user && (
+                            <>
+                                <Link
+                                    href="/me/posts"
+                                    className="text-black text-2xl font-normal text-right px-4 py-2 rounded-md transition-all duration-200
+                         hover:bg-gray-500 hover:bg-opacity-10"
+                                >
+                                    Perfil
+                                </Link>
+                                <button
+                                    className="text-black text-2xl font-normal text-right px-4 py-2 rounded-md transition-all duration-200
+                         hover:bg-gray-500 hover:bg-opacity-10"
+                                    onClick={signOut}
+                                >
+                                    Cerrar sesión
+                                </button>
+                            </>
+                        )
+                    }
+                    {!user && (
+                        <button
+                            className="text-black text-2xl font-normal px-4 py-2 rounded-md transition-all duration-200
+                                         hover:bg-gray-500 hover:bg-opacity-10"
+                            onClick={() => setIsSignInModalOpen(true)}
+                        >
+                            Entrar
+                        </button>
+                    )
+                    }
                 </nav>
             </aside>
         </>
