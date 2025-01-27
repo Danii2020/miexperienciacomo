@@ -29,7 +29,7 @@ const NavBar = () => {
                         user && (
                             <>
                                 <Link
-                                    href="/me/posts"
+                                    href="/me"
                                     className="text-black text-2xl font-normal text-right px-4 py-2 rounded-md transition-all duration-200
                          hover:bg-gray-500 hover:bg-opacity-10"
                                 >

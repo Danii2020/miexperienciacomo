@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/AuthContext";
+import { UserProfileProvider } from "./context/UserProfileContext";
 
 const openSans = Open_Sans({
     variable: "--font-open-sans",
@@ -25,10 +26,12 @@ export default function RootLayout({
                 className={`${openSans.variable} antialiased`}
             >
                 <AuthProvider >
-                    <NavBar />
-                    <div className="grid items-center justify-items-center min-h-screen p-2 gap-16">
-                        {children}
-                    </div>
+                    <UserProfileProvider >
+                        <NavBar />
+                        <div className="grid items-center justify-items-center min-h-screen p-2 gap-16">
+                            {children}
+                        </div>
+                    </UserProfileProvider>
                 </ AuthProvider>
             </body>
         </html>

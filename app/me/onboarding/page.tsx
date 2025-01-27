@@ -4,25 +4,39 @@ import Title from "@/app/components/Typography/Title";
 import Input from "@/app/components/Input/Input";
 import Switch from "@/app/components/Switch/Switch";
 import { useAuth } from "@/app/context/AuthContext";
-import { useState } from "react";
+import { updateUserProfile } from "@/app/services/userService";
+import { useState, useEffect } from "react";
+import { useUserProfile } from "@/app/context/UserProfileContext";
+import { User } from "@/app/types/user";
 
 const OnboardingPage = () => {
     const { user, supabase } = useAuth()
-    const [formData, setFormData] = useState({
-        professional_role: '',
-        experience_time: '',
-        show_name: false,
-        show_photo: false
+    const { userProfile, refreshProfile } = useUserProfile()
+    const [formData, setFormData] = useState<User>({
+        professionalRole: userProfile?.professional_role || '',
+        experienceTime: userProfile?.experience_time || '',
+        showName: userProfile?.show_name ?? true,
+        showPhoto: userProfile?.show_photo ?? true
     });
 
+    useEffect(() => {
+        if (userProfile) {
+            setFormData({
+                professionalRole: userProfile.professional_role || '',
+                experienceTime: userProfile.experience_time || '',
+                showName: userProfile.show_name ?? true,
+                showPhoto: userProfile.show_photo ?? true
+            })
+        }
+    }, [userProfile])
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [e.target.name]: e.target.value
-        });
+        }));
     };
 
-    const handleSwitchChange = (field: 'show_name' | 'show_photo') => {
+    const handleSwitchChange = (field: 'showName' | 'showPhoto') => {
         setFormData(prev => ({
             ...prev,
             [field]: !prev[field]
@@ -32,17 +46,9 @@ const OnboardingPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const { error } = await supabase
-                .from('users')
-                .update({
-                    professional_role: formData.professional_role,
-                    experience_time: formData.experience_time,
-                    show_name: formData.show_name,
-                    show_photo: formData.show_photo
-                })
-                .eq('id', user?.id);
-
-            if (error) throw error;
+            if (!user?.id) throw new Error('User not found');
+            await updateUserProfile(supabase, user.id, formData);
+            await refreshProfile();
         } catch (error) {
             console.error('Error updating profile:', error);
         }
@@ -57,30 +63,30 @@ const OnboardingPage = () => {
                 <div className="mb-4">
                     <label
                         className="text-3xl font-semibold"
-                        htmlFor="professional_role"
+                        htmlFor="professionalRole"
                     >
                         ¿Cuál es tu rol principal?
                     </label>
                     <Input
-                        name="professional_role"
+                        name="professionalRole"
                         placeholder="Ejemplo: Desarrollador full stack"
                         className="text-xl mt-4"
-                        value={formData.professional_role}
+                        value={formData?.professionalRole}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="text-3xl font-semibold"
-                        htmlFor="experience_time"
+                        htmlFor="experienceTime"
                     >
                         ¿Cuánto tiempo de experiencia profesional tienes?
                     </label>
                     <Input
-                        name="experience_time"
+                        name="experienceTime"
                         placeholder="Ejemplo: 2 años"
                         className="text-xl mt-4"
-                        value={formData.experience_time}
+                        value={formData?.experienceTime}
                         onChange={handleInputChange}
                     />
                 </div>
@@ -95,12 +101,12 @@ const OnboardingPage = () => {
                         </div>
                         <div className="flex flex-col items-center justify-between gap-7">
                             <Switch
-                                checked={formData.show_photo}
-                                onChange={() => handleSwitchChange("show_photo")}
+                                checked={formData?.showPhoto}
+                                onChange={() => handleSwitchChange("showPhoto")}
                             />
                             <Switch
-                                checked={formData.show_name}
-                                onChange={() => handleSwitchChange("show_name")}
+                                checked={formData?.showName}
+                                onChange={() => handleSwitchChange("showName")}
                             />
                         </div>
                     </div>
