@@ -19,6 +19,7 @@ const ToolbarButton = forwardRef<
     React.ButtonHTMLAttributes<HTMLButtonElement> & { selected?: boolean }
 >(({ selected, ...props }, ref) => (
     <button
+        type="button"
         ref={ref}
         {...props}
         className={`flex items-center justify-center p-2 border rounded ${selected

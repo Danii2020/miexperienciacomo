@@ -7,5 +7,6 @@ export type User = {
 }
 
 export type UserDisplay = Pick<User, 'showName' | 'showPhoto'> & {
-    name: string;  // Redefining name as required instead of optional
+    name: string;
+    imageUrl: string
 }

@@ -12,56 +12,45 @@ export type Database = {
       posts: {
         Row: {
           content: string
-          created_at: string | null
-          id: number
+          created_at: string
+          id: string
+          slug: string | null
           title: string
-          updated_at: string | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           content: string
-          created_at?: string | null
-          id?: never
+          created_at?: string
+          id?: string
+          slug?: string | null
           title: string
-          updated_at?: string | null
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           content?: string
-          created_at?: string | null
-          id?: never
+          created_at?: string
+          id?: string
+          slug?: string | null
           title?: string
-          updated_at?: string | null
-          user_id?: string | null
+          user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "posts_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      profiles: {
+      subscribers: {
         Row: {
-          bio: string | null
           created_at: string | null
+          email: string
           id: string
-          user_id: string | null
         }
         Insert: {
-          bio?: string | null
           created_at?: string | null
+          email: string
           id?: string
-          user_id?: string | null
         }
         Update: {
-          bio?: string | null
           created_at?: string | null
+          email?: string
           id?: string
-          user_id?: string | null
         }
         Relationships: []
       }
@@ -70,6 +59,7 @@ export type Database = {
           email: string
           experience_time: string | null
           id: string
+          image_url: string | null
           name: string
           professional_role: string | null
           role: string
@@ -80,6 +70,7 @@ export type Database = {
           email: string
           experience_time?: string | null
           id: string
+          image_url?: string | null
           name: string
           professional_role?: string | null
           role?: string
@@ -90,6 +81,7 @@ export type Database = {
           email?: string
           experience_time?: string | null
           id?: string
+          image_url?: string | null
           name?: string
           professional_role?: string | null
           role?: string

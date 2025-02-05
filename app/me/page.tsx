@@ -14,6 +14,7 @@ const UserProfilePage = () => {
         name: userProfile?.name ?? "",
         showName: userProfile?.show_name ?? true,
         showPhoto: userProfile?.show_photo ?? true,
+        imageUrl: userProfile?.image_url ?? "/default-user.webp"
     })
 
     useEffect(() => {
@@ -22,6 +23,7 @@ const UserProfilePage = () => {
                 name: userProfile.name ?? "",
                 showName: userProfile.show_name ?? true,
                 showPhoto: userProfile.show_photo ?? true,
+                imageUrl: userProfile.image_url ?? "/default-user.webp"
             })
         }
     }, [userProfile])
@@ -34,7 +36,7 @@ const UserProfilePage = () => {
                 </Title>
                 <span className="inline-flex items-center justify-center gap-4">
                     <Image
-                        src="https://placehold.co/40"
+                        src={userData.imageUrl}
                         className="rounded-full"
                         width={40}
                         height={40}
@@ -45,6 +47,12 @@ const UserProfilePage = () => {
                         href="/me"
                     >
                         {userData.showName ? userData.name : "Anónimo"}
+                    </Link>
+                    <Link
+                        href={"/create-post"}
+                        className="w-full px-8 py-2 bg-black text-white rounded-3xl font-bold text-xl"
+                    >
+                        Crear
                     </Link>
                 </span>
   

@@ -1,14 +1,15 @@
-import React from "react";
-import FooterInfo from "../../components/FooterInfo/FooterInfo";
-import Title from "../../components/Typography/Title";
+import Title from "@/app/components/Typography/Title"
+import { useAuth } from "@/app/context/AuthContext"
+import { getPost } from "@/app/services/postService"
 
-const Post = () => {
+const PostContent = async (slug:string) => {
+    const { supabase } = useAuth()
+    const { data } = await getPost(supabase, slug)
+
     return (
-        <div className="grid items-start justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-10">
-            <main className="flex flex-col items-start justify-start">
-                <div className="p-14 border-[2px] bg-white w-full border-black rounded-xl focus:outline-none mb-5">
+        <div className="p-14 border-[2px] bg-white w-full border-black rounded-xl focus:outline-none mb-5">
                     <Title>
-                        Mi experiencia como programador
+                        {data.title}
                     </Title>
                     <div className="prose">
                         <p>
@@ -39,9 +40,5 @@ const Post = () => {
                         <FooterInfo footerType='postBody'/>
                     </div>
                 </div>
-            </main>
-        </div>
     )
 }
-
-export default Post

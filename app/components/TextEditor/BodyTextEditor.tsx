@@ -17,18 +17,21 @@ import ToolBar from "./ToolBar";
 
 interface Props {
   content: EditorOptions["content"];
+  onUpdate?: (content: string) => void;
 }
 
-const BodyTextEditor = ({ content }: Props) => {
+const BodyTextEditor = ({ content, onUpdate }: Props) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
         class: "prose min-h-screen p-4 bg-white rounded-xl"
       }
     },
+    immediatelyRender: false,
     onUpdate: ({ editor: _editor }) => {
-      console.log(_editor.getJSON());
-      localStorage.setItem("_editorContent", JSON.stringify(_editor.getJSON()));
+      const jsonContent = _editor.getJSON();
+      localStorage.setItem("_editorContent", JSON.stringify(jsonContent));
+      onUpdate?.(editor?.getHTML() || "");
     },
     extensions: [
       StarterKit.configure({
@@ -58,7 +61,7 @@ const BodyTextEditor = ({ content }: Props) => {
     <>
       <ToolBar editor={editor} />
       <br />
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor}/>
     </>
   )
 };
