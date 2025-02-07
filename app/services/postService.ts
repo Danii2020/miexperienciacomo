@@ -4,7 +4,7 @@ import { Post } from '../types/post';
 
 export const savePost = async (
     supabase: SupabaseClient<Database>,
-    userId: string | undefined,
+    userId: string,
     postData: Post
 ) => {
     const { error } = await supabase
@@ -21,16 +21,47 @@ export const savePost = async (
     return { success: true };
 };
 
-export const getPost = async (supabase: SupabaseClient<Database>, slug: string) => {
+export const getPost = async (
+    supabase: SupabaseClient<Database>,
+    slug: string
+  ) => {
     const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('slug', slug)
-        .single();
-
+      .from('posts')
+      .select(`
+        *,
+        user_id (
+            professional_role,
+            experience_time
+        )
+    `)
+      .eq('slug', slug)
+      .single();
+  
     if (error) {
-        throw error;
+      throw error;
     }
-
+  
     return data;
-};
+  };
+  
+
+  export const getPosts = async (
+    supabase: SupabaseClient<Database>,
+  ) => {
+    const { data, error } = await supabase
+      .from('posts')
+      .select(`
+        *,
+        user_id (
+            professional_role,
+            experience_time
+        )
+    `)
+  
+    if (error) {
+      throw error;
+    }
+  
+    return data;
+  };
+

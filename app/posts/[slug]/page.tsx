@@ -1,12 +1,11 @@
 import React from "react";
-import FooterInfo from "../../components/FooterInfo/FooterInfo";
-import Title from "../../components/Typography/Title";
+import PostContent from "./PostContent";
 
 const Post = async ({params}:{params: Promise<{ slug: string }>}) => {
     const slug = (await params).slug
 
     return (
-        <div>{slug}</div>
+        <PostContent slug={slug}  />
         // <div className="grid items-start justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-10">
         //     <main className="flex flex-col items-start justify-start">
         //         <div className="p-14 border-[2px] bg-white w-full border-black rounded-xl focus:outline-none mb-5">
