@@ -7,9 +7,12 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useUserProfile } from "@/app/context/UserProfileContext";
 import { UserDisplay } from "../types/user";
+import { useUserPosts } from "@/hooks/use-user-posts";
 
 const UserProfilePage = () => {
-    const { userProfile } = useUserProfile()
+    const { userProfile, loading:userLoading } = useUserProfile()
+    const { userPosts, error, loading:postsLoading } = useUserPosts(userProfile?.id || "")
+
     const [userData, setUserData] = useState<UserDisplay>({
         name: userProfile?.name ?? "",
         showName: userProfile?.show_name ?? true,
@@ -27,6 +30,9 @@ const UserProfilePage = () => {
             })
         }
     }, [userProfile])
+
+    if (userLoading || postsLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading post: {error.message}</p>;
 
     return (
         <main className="flex flex-col items-center justify-start">
@@ -55,14 +61,25 @@ const UserProfilePage = () => {
                         Crear
                     </Link>
                 </span>
-  
-            </div>
-            <div className="flex flex-col gap-8 w-full max-w-xl">
-                <Link href={`/me/posts/1`}>
-                    <ExperienceCard />
-                </Link>
 
             </div>
+            <ul className="flex flex-col gap-8 w-full max-w-xl">
+                {
+                    userPosts.map((post) => (
+                        <li key={post.id}>
+                            <Link href={`/me/posts/${post.slug}`}>
+                                <ExperienceCard
+                                    title={post.title}
+                                    content={post.summary || ""}
+                                    experience_time={post.user_id.experience_time}
+                                    professional_role={post.user_id.professional_role}
+                                />
+                            </Link>
+
+                        </li>
+                    ))
+                }
+            </ul>
         </main>
     )
 }

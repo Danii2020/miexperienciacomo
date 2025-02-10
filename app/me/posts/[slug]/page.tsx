@@ -3,7 +3,7 @@ import PostForm from "../../../components/Forms/PostForm";
 const UserPostEditPage = () => {
     return (
         <main className="flex flex-col items-start justify-start py-8">
-            <div className="flex flex-col gap-8 w-full max-w-4xl">
+            <div className="flex flex-col gap-8 w-full max-w-2xl">
                 <PostForm
                     postTitle="Mi experiencia como programador"
                     postContent="<p>Esta es mi experiencia como programador</p>"

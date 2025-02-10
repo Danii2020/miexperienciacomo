@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { PostgrestError } from "@supabase/supabase-js"
-import { getPost } from "@/app/services/postService"
+import { getPostBySlug } from "@/app/services/postService"
  
 import { createClient } from "@/lib/supabase/client"
 import { PostDatabase } from "@/app/types/post"
@@ -14,10 +14,7 @@ export function usePost(slug:string) {
   useEffect(() => {
     async function fetchPost(slug:string) {
       try {
-        const data = await getPost(supabase, slug)
-        if (data.user_id?.error) {
-          throw new Error('Failed to load user data')
-        }
+        const data = await getPostBySlug(supabase, slug)
         setPost(data as unknown as PostDatabase)
       } catch (error) {
         setError(error as PostgrestError)

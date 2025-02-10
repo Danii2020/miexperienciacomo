@@ -4,6 +4,7 @@ export type Post = {
     title: string
     content: string,
     slug: string,
+    summary: string
 }
 
 export type PostDatabase = Database["public"]["Tables"]["posts"]["Row"] & {

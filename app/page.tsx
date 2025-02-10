@@ -33,14 +33,14 @@ export default function Home() {
     return (
         <main className="flex flex-col items-center justify-center">
             <div className="flex flex-col gap-8 w-full max-w-xl">
-                <ul>
+                <ul className="flex flex-col gap-8 w-full max-w-xl">
                     {
                         posts.map((post) => (
                             <li key={post.id}>
                                 <Link href={`/posts/${post.slug}`}>
                                     <ExperienceCard
                                         title={post.title}
-                                        content={post.content}
+                                        content={post.summary || ""}
                                         experience_time={post.user_id.experience_time}
                                         professional_role={post.user_id.professional_role}
                                     />
