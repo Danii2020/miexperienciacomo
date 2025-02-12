@@ -53,6 +53,12 @@ const BodyTextEditor = ({ content, onUpdate }: Props) => {
     content
   });
 
+  React.useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content, false);
+    }
+  }, [content, editor]);
+
   if (!editor) {
     return null;
   }

@@ -3,52 +3,74 @@
 import BodyTextEditor from "../TextEditor/BodyTextEditor";
 import Title from "../Typography/Title";
 import Input from "../Input/Input";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
-import { savePost } from "@/app/services/postService";
+import { deletePost, savePost, updatePost } from "@/app/services/postService";
 import { slugify, capitalizeLetter } from "@/lib/utils";
+import { PostDatabase } from "@/app/types/post";
+import { useRouter } from "next/navigation";
 
 type Props = {
-    postTitle?: string;
-    postContent?: string;
-    postSummary?: string
+    post?: PostDatabase | null
+    isEditForm: boolean;
 }
 
-const PostForm: React.FC<Props> = ({ postTitle, postContent, postSummary }) => {
+const PostForm: React.FC<Props> = ({ post, isEditForm
+}) => {
     const { user, supabase } = useAuth()
 
-    const [title, setTitle] = useState(postTitle || '');
-    const [summary, setSummary] = useState(postSummary || '')
-    const [content, setContent] = useState(postContent || "");
+    const [title, setTitle] = useState(post?.title || '');
+    const [summary, setSummary] = useState(post?.summary || '')
+    const [content, setContent] = useState(post?.content || "");
+
+    const router = useRouter()
+
+    useEffect(() => {
+        setTitle(post?.title || '');
+        setContent(post?.content || '');
+        setSummary(post?.summary || '');
+    }, [post?.title, post?.content, post?.summary]);
+
+    const getPostData = () => ({
+        title,
+        content,
+        summary,
+        slug: slugify(title, user?.id || "-")
+    });
 
     const handleOnTitleChange = (e: { target: { value: string; }; }) => {
         const inputTitle = e.target.value;
         if (inputTitle.length > 0) {
             setTitle(capitalizeLetter(inputTitle))
-          }
+        }
     }
 
     const handleOnSummaryChange = (e: { target: { value: string; }; }) => {
         const summaryText = e.target.value;
         if (summaryText.length > 0) {
             setSummary(capitalizeLetter(summaryText))
-          }
+        }
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmitSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        const postData = {
-            title,
-            content,
-            summary,
-            slug: slugify(title, user?.id || "-")
-        }
-        await savePost(supabase, user?.id || "", postData)
+        await savePost(supabase, user?.id || "", getPostData())
         console.log("Post saved!")
     };
 
+    const handleEdit = async () => {
+        await updatePost(supabase, { id: post?.id, ...getPostData() })
+        console.log("Post updated!")
+    }
+
+    const handleDelete = async () => {
+        await deletePost(supabase, post?.id || "")
+        console.log("Post deleted!")
+        router.push("/me")
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitSave}>
             <div className="text-left">
                 <Title>
                     Cuéntale al mundo tu experiencia profesional
@@ -81,12 +103,33 @@ const PostForm: React.FC<Props> = ({ postTitle, postContent, postSummary }) => {
                     />
                 </div>
             </div>
-            <button
-                type="submit"
-                className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl"
-            >
-                Publicar
-            </button>
+            {
+                !isEditForm ? (
+                    <button
+                        type="submit"
+                        className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl"
+                    >
+                        Publicar
+                    </button>
+                ) : (
+                    <div className="flex flex-row justify-center items-center gap-4">
+                        <button
+                            className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl"
+                            type="button"
+                            onClick={handleEdit}
+                        >
+                            Editar
+                        </button>
+                        <button
+                            className="w-full p-4 bg-[#F40000] border-[2px] border-black text-white rounded-xl font-bold text-xl"
+                            type="button"
+                            onClick={handleDelete}
+                        >
+                            Eliminar
+                        </button>
+                    </div>
+                )
+            }
         </form>
     )
 }

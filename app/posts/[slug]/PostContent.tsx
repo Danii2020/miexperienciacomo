@@ -6,8 +6,6 @@ import { usePost } from "@/hooks/use-posts"
 
 const PostContent = ({ slug }: { slug: string }) => {
     const { post } = usePost(slug)
-    console.log(post)
-
     return (
         <div className="p-14 border-[2px] bg-white border-black rounded-xl focus:outline-none mb-5">
             <Title>

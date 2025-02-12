@@ -30,6 +30,39 @@ export const savePost = async (
     return { success: true };
 };
 
+export const updatePost = async (
+    supabase: SupabaseClient<Database>,
+    postData: Post
+) => {
+    const { error } = await supabase
+        .from('posts')
+        .update({
+            title: postData.title,
+            content: postData.content,
+            slug: postData.slug,
+            summary: postData.summary,
+        })
+        .eq("id", postData?.id || "");
+    if (error) {
+        throw error;
+    }
+    return { success: true };
+};
+
+export const deletePost = async (
+    supabase: SupabaseClient<Database>,
+    postId: string
+) => {
+    const { error } = await supabase
+        .from('posts')
+        .delete()
+        .eq("id", postId);
+    if (error) {
+        throw error;
+    }
+    return { success: true };
+};
+
 const getPost = async (
     supabase: SupabaseClient<Database>,
     column: string,

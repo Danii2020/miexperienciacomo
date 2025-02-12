@@ -14,6 +14,7 @@ export type Database = {
           content: string | null
           created_at: string
           id: string
+          likes: number | null
           slug: string
           summary: string | null
           title: string
@@ -23,6 +24,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           id?: string
+          likes?: number | null
           slug: string
           summary?: string | null
           title: string
@@ -32,6 +34,7 @@ export type Database = {
           content?: string | null
           created_at?: string
           id?: string
+          likes?: number | null
           slug?: string
           summary?: string | null
           title?: string

@@ -5,7 +5,7 @@ const CreatePost = () => {
     return (
         <main className="flex flex-col items-start justify-start py-8">
             <div className="flex flex-col gap-8 w-full max-w-3xl">
-                <PostForm />
+                <PostForm isEditForm={false} />
             </div>
         </main>
 
