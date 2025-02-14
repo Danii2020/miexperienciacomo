@@ -49,14 +49,14 @@ const UserProfilePage = () => {
                         alt={""}
                     />
                     <Link
-                        className="text-lg font-medium hover:underline"
+                        className="text-lg font-medium hover:underline w-full"
                         href="/me"
                     >
                         {userData.showName ? userData.name : "Anónimo"}
                     </Link>
                     <Link
                         href={"/create-post"}
-                        className="w-full px-8 py-2 bg-black text-white rounded-3xl font-bold text-xl"
+                        className="w-full px-8 py-2 bg-black text-white rounded-3xl font-bold text-xl text-center"
                     >
                         Crear
                     </Link>
@@ -69,8 +69,7 @@ const UserProfilePage = () => {
                         <li key={post.id}>
                             <Link href={`/me/posts/${post.slug}`}>
                                 <ExperienceCard
-                                    title={post.title}
-                                    content={post.summary || ""}
+                                    post={post}
                                     experience_time={post.user_id.experience_time}
                                     professional_role={post.user_id.professional_role}
                                 />

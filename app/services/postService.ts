@@ -113,3 +113,20 @@ export const getPostsByUserId = async (
     return data;
 }
 
+export const saveLikes = async (
+    supabase: SupabaseClient<Database>,
+    likes: number,
+    postId: string
+) => {
+    const { error } = await supabase
+    .from('posts')
+    .update({
+        likes
+    })
+    .eq("id", postId || "");
+    if (error) {
+        throw error;
+    }
+    return { success: true };
+}
+

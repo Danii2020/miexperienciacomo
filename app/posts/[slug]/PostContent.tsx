@@ -16,6 +16,8 @@ const PostContent = ({ slug }: { slug: string }) => {
                 footerType='postBody'
                 professional_role={post?.user_id.professional_role || ""}
                 experience_time={post?.user_id.experience_time || ""}
+                likes={post?.likes || 0}
+                postId={post?.id || ""}
             />
         </div>
     )

@@ -39,8 +39,7 @@ export default function Home() {
                             <li key={post.id}>
                                 <Link href={`/posts/${post.slug}`}>
                                     <ExperienceCard
-                                        title={post.title}
-                                        content={post.summary || ""}
+                                        post={post}
                                         experience_time={post.user_id.experience_time}
                                         professional_role={post.user_id.professional_role}
                                     />
