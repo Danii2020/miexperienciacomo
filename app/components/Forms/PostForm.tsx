@@ -75,7 +75,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                 <Title>
                     Cuéntale al mundo tu experiencia profesional
                 </Title>
-                <p className="font-normal text-md mb-2">
+                <p className="font-normal text-base mb-2">
                     Publica solo contenido relacionado con tu experiencia profesional. Las publicaciones
                     fuera de este tema serán eliminadas, y la cuenta podría ser bloqueada.
                 </p>
@@ -114,7 +114,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                 ) : (
                     <div className="flex flex-row justify-center items-center gap-4">
                         <button
-                            className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl"
+                            className="w-full p-4 bg-[#373737] text-white rounded-xl font-bold text-xl"
                             type="button"
                             onClick={handleEdit}
                         >

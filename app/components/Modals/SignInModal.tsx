@@ -55,12 +55,12 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
                 <Title className="text-center">
                     Gracias por querer formar parte de este proyecto
                 </Title>
-                <p className="text-md text-black text-center mb-6 px-8">
+                <p className="text-base text-black text-center mb-6 px-8">
                     Para comenzar a publicar experiencias puedes iniciar sesión con tu
                     cuenta de Google
                 </p>
                 <button
-                    className="bg-gray-800 text-white text-lg font-medium py-2 px-8 rounded-full w-1/3 hover:bg-gray-700"
+                    className="bg-[#373737] text-white text-lg font-medium py-2 px-8 rounded-full w-1/3 hover:bg-gray-700"
                     onClick={signInWithGoogle}
                     disabled={isGoogleLoading}
                 >

@@ -28,7 +28,7 @@ export default function RootLayout({
                 <AuthProvider >
                     <UserProfileProvider >
                         <NavBar />
-                        <div className="grid items-center justify-items-center min-h-screen p-2 gap-16">
+                        <div className="ml-[20%] grid items-center justify-items-center min-h-screen p-2 gap-16">
                             {children}
                         </div>
                     </UserProfileProvider>
