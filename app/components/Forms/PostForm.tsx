@@ -59,6 +59,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
     };
 
     const handleEdit = async () => {
+        console.log(post?.id)
         await updatePost(supabase, { id: post?.id, ...getPostData() })
         console.log("Post updated!")
     }

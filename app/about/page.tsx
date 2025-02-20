@@ -46,7 +46,24 @@ const AboutPage = () => {
                 Explora experiencias
                 <ArrowForwardIcon fontSize="large" className="fill-current" />
             </Link>
+            <footer className="flex flex-row justify-around items-center mt-6 text-center">
+                <Link
+                    href="/terms"
+                >
+                    <small className="text-sm hover:underline">Términos</small>
+                </Link>
+                <Link
 
+                    href="/privacy"
+                >
+                    <small className="text-sm hover:underline">Privacidad</small>
+                </Link>
+                <Link
+                    href="/contact"
+                >
+                    <small className="text-sm hover:underline">Contacto</small>
+                </Link>
+            </footer>
         </div>
     )
 }

@@ -51,7 +51,6 @@ const FooterInfo = ({ footerType, professional_role, experience_time, likes, pos
             <div className="flex items-center gap-1">
                 <button
                     type="button"
-                    className="z-10"
                     onClick={handleOnLikeClick}
                 >
                     <Favorite fontSize="medium"/>
