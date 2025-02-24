@@ -40,7 +40,7 @@ const UserProfilePage = () => {
                 <Title className="mb-4">
                     Tus experiencias publicadas
                 </Title>
-                <span className="inline-flex items-center justify-center gap-4">
+                <span className="inline-flex items-center justify-center gap-4 w-full">
                     <Image
                         src={userData.imageUrl}
                         className="rounded-full"
@@ -56,7 +56,8 @@ const UserProfilePage = () => {
                     </Link>
                     <Link
                         href={"/create-post"}
-                        className="w-full px-8 py-2 bg-black text-white rounded-3xl font-bold text-xl text-center"
+                        className="w-full px-8 py-2 bg-[#404040] hover:bg-black text-white rounded-3xl font-bold text-xl
+                        text-center transition-all duration-300 ease-in-out hover:scale-105"
                     >
                         Crear
                     </Link>

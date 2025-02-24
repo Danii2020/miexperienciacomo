@@ -4,7 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const AboutPage = () => {
     return (
-        <div className="p-14 border-[2px] bg-white border-black rounded-xl focus:outline-none mb-5 w-2/3">
+        <div className="lg:p-14 p-9 border-[2px] bg-white border-black rounded-xl focus:outline-none mb-5 lg:w-2/3 w-full">
             <Title >
                 Tu experiencia, el motor del aprendizaje
             </Title>

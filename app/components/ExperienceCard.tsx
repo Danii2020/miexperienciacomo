@@ -10,7 +10,7 @@ type Props = {
 
 const ExperienceCard = ({ post, professional_role, experience_time }:Props) => {
     return (
-        <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg">
+        <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg max-h-96">
             <h2 className="text-3xl font-bold">{post.title}</h2>
             <p className="mt-4 text-lg text-gray-300">
                 {post.summary}

@@ -24,7 +24,7 @@ const BodyTextEditor = ({ content, onUpdate }: Props) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "prose min-h-screen p-4 bg-white rounded-xl"
+        class: "prose min-h-[60vh] p-4 bg-white rounded-xl"
       }
     },
     immediatelyRender: false,

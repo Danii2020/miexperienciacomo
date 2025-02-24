@@ -108,7 +108,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                 !isEditForm ? (
                     <button
                         type="submit"
-                        className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl"
+                        className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl z-10"
                     >
                         Publicar
                     </button>
