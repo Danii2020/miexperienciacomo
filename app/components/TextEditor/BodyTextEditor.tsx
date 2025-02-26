@@ -14,6 +14,7 @@ import Image from "@tiptap/extension-image";
 import Youtube from "@tiptap/extension-youtube";
 
 import ToolBar from "./ToolBar";
+import { useEffect } from "react";
 
 interface Props {
   content: EditorOptions["content"];
@@ -53,7 +54,7 @@ const BodyTextEditor = ({ content, onUpdate }: Props) => {
     content
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (editor && content) {
       editor.commands.setContent(content, false);
     }
