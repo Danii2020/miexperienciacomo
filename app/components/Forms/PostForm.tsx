@@ -9,7 +9,8 @@ import { deletePost, savePost, updatePost } from "@/app/services/postService";
 import { slugify, capitalizeLetter } from "@/lib/utils";
 import { PostDatabase } from "@/app/types/post";
 import { useRouter } from "next/navigation";
-import CreateModal from "../Modals/Operations/CreateModal";
+import SuccessfulModal from "../Modals/SuccessfulModal";
+import DeleteQuestionModal from "../Modals/DeleteQuestionModal";
 import confetti from "canvas-confetti";
 
 type Props = {
@@ -26,10 +27,14 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
     const [content, setContent] = useState<string>(post?.content || "");
 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+    const [isSuccessfulDeleteModalOpen, setIsSuccessfulDeleteModalOpen] = useState<boolean>(false);
 
     const router = useRouter()
 
     useEffect(() => {
+        console.log(post?.summary)
         setTitle(post?.title || '');
         setContent(post?.content || '');
         setSummary(post?.summary || '');
@@ -61,8 +66,8 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
         await savePost(supabase, user?.id || "", getPostData())
         setIsCreateModalOpen(true)
         confetti({
-            particleCount:150,
-            spread:60
+            particleCount: 150,
+            spread: 60
         })
         setTimeout(() => {
             router.push("/me")
@@ -70,23 +75,65 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
     };
 
     const handleEdit = async () => {
-        console.log(post?.id)
+        console.log(getPostData())
         await updatePost(supabase, { id: post?.id, ...getPostData() })
-        console.log("Post updated!")
+        setIsEditModalOpen(true)
+        confetti({
+            particleCount: 150,
+            spread: 60
+        })
+        setTimeout(() => {
+            router.push("/me")
+        }, 2000)
     }
 
     const handleDelete = async () => {
+        setIsDeleteModalOpen(false)
         await deletePost(supabase, post?.id || "")
-        console.log("Post deleted!")
-        router.push("/me")
+        setIsSuccessfulDeleteModalOpen(true)
+        confetti({
+            particleCount: 150,
+            spread: 60
+        })
+        setTimeout(() => {
+            router.push("/me")
+        }, 2000)
     }
 
     return (
         <>
             {isCreateModalOpen && (
-                <CreateModal
+                <SuccessfulModal
+                    title="¡Has publicado una experiencia!"
+                    content="Felicidades, tu experiencia se ha publicado con éxito 🎉"
                     isOpen={isCreateModalOpen}
                     closeModal={() => setIsCreateModalOpen(false)}
+                />
+            )}
+            {isEditModalOpen && (
+                <SuccessfulModal
+                    title="¡Se ha actualizado tu experiencia!"
+                    content="Felicidades, tu experiencia se ha actualizado con éxito 🎉"
+                    isOpen={isEditModalOpen}
+                    closeModal={() => setIsEditModalOpen(false)}
+                />
+            )}
+            {isDeleteModalOpen && (
+                <DeleteQuestionModal
+                    title="¡Va a eliminar tu experiencia!"
+                    content="¿Seguro que quieres eliminar esta experiencia? 💀"
+                    isOpen={isDeleteModalOpen}
+                    closeModal={() => setIsDeleteModalOpen(false)}
+                    onCancel={() => setIsDeleteModalOpen(false)}
+                    onDelete={handleDelete}
+                />
+            )}
+            {isSuccessfulDeleteModalOpen && (
+                <SuccessfulModal
+                    title="¡Se ha eliminado tu experiencia!"
+                    content="Tu experiencia se ha eliminado con éxito 🎉"
+                    isOpen={isSuccessfulDeleteModalOpen}
+                    closeModal={() => setIsSuccessfulDeleteModalOpen(false)}
                 />
             )}
             <form onSubmit={handleSubmitSave}>
@@ -142,7 +189,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                             <button
                                 className="w-full p-4 bg-[#F40000] border-[2px] border-black text-white rounded-xl font-bold text-xl"
                                 type="button"
-                                onClick={handleDelete}
+                                onClick={() => setIsDeleteModalOpen(true)}
                             >
                                 Eliminar
                             </button>

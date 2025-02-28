@@ -9,7 +9,7 @@ type SuccessfulProps = Props & {
 const SuccessfulModal = ({ isOpen, closeModal, title, content }:SuccessfulProps) => {
     return (
         <TemplateModal isOpen={isOpen} closeModal={closeModal}>
-            <Title>
+            <Title className="text-center mt-4">
                 {title}
             </Title>
             <p className="text-base text-black text-center mb-6 px-8">
