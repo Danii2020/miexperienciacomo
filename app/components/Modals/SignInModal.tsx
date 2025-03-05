@@ -7,6 +7,7 @@ import TemplateModal, { Props } from "./TemplateModal";
 import { createClient } from "@/lib/supabase/client"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react";
+import Button from "../Button/Button";
 
 const SignInModal = ({ isOpen, closeModal }: Props) => {
     const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
@@ -45,17 +46,15 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
                 Para comenzar a publicar experiencias puedes iniciar sesión con tu
                 cuenta de Google
             </p>
-            <button
-                className="bg-[#373737] text-white text-lg font-medium py-4 px-8 rounded-full w-full hover:bg-black
-                    transition-all duration-300 ease-in-out hover:scale-105"
+            <Button
                 onClick={signInWithGoogle}
                 disabled={isGoogleLoading}
+                isLoading={isGoogleLoading}
+                icon={<GoogleIcon />}
+                loadingIcon={<LoopIcon className="mr-2 size-4 animate-spin" />}
             >
-                <div className="flex justify-center items-center gap-8">
-                    {isGoogleLoading ? <LoopIcon className="mr-2 size-4 animate-spin" /> : <GoogleIcon />}
-                    Inicia sesión
-                </div>
-            </button>
+                Inicia sesión
+            </Button>
         </TemplateModal>
 
 

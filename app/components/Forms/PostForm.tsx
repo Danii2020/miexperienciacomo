@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import SuccessfulModal from "../Modals/SuccessfulModal";
 import DeleteQuestionModal from "../Modals/DeleteQuestionModal";
 import confetti from "canvas-confetti";
+import Button from "../Button/Button";
 
 type Props = {
     post?: PostDatabase | null
@@ -171,28 +172,28 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                 </div>
                 {
                     !isEditForm ? (
-                        <button
+                        <Button
                             type="submit"
-                            className="w-full p-4 bg-black text-white rounded-xl font-bold text-xl z-10"
+                            className="rounded-xl"
                         >
                             Publicar
-                        </button>
+                        </Button>
                     ) : (
                         <div className="flex flex-row justify-center items-center gap-4">
-                            <button
-                                className="w-full p-4 bg-[#373737] text-white rounded-xl font-bold text-xl"
+                            <Button
+                                className="rounded-xl border-[2px] border-black"
                                 type="button"
                                 onClick={handleEdit}
                             >
                                 Editar
-                            </button>
-                            <button
-                                className="w-full p-4 bg-[#F40000] border-[2px] border-black text-white rounded-xl font-bold text-xl"
+                            </Button>
+                            <Button
+                                className="bg-[#F40000] border-[2px] border-black rounded-xl"
                                 type="button"
                                 onClick={() => setIsDeleteModalOpen(true)}
                             >
                                 Eliminar
-                            </button>
+                            </Button>
                         </div>
                     )
                 }

@@ -1,3 +1,4 @@
+import Button from "../Button/Button"
 import Title from "../Typography/Title"
 import TemplateModal from "./TemplateModal"
 import { Props } from "./TemplateModal"
@@ -20,20 +21,19 @@ const DeleteQuestionModal = ({ isOpen, closeModal, title, content, onCancel, onD
                 {content}
             </p>
             <div className="flex flex-row justify-center items-center gap-6">
-                <button
-                    className="w-full p-4 bg-[#373737] text-white rounded-xl font-bold text-xl"
+                <Button
                     type="button"
                     onClick={onCancel}
                 >
                     Cancelar
-                </button>
-                <button
-                    className="w-full p-4 bg-[#F40000] border-[2px] border-black text-white rounded-xl font-bold text-xl"
+                </Button>
+                <Button
+                    className="bg-[#F40000]"
                     type="button"
                     onClick={onDelete}
                 >
                     Eliminar
-                </button>
+                </Button>
             </div>
         </TemplateModal>
     )

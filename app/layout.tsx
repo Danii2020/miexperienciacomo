@@ -27,10 +27,12 @@ export default function RootLayout({
             >
                 <AuthProvider >
                     <UserProfileProvider >
-                        <NavBar />
-                        <div className="md:ml-[20%] grid md:items-center md:justify-items-center p-4
-                        gap-16 px-4 lg:px-0 pb-20">
-                            {children}
+                        <div className="flex flex-row justify-center items-center">
+                            <NavBar />
+                            <div className="flex flex-1 flex-col justify-center items-center p-4
+                            gap-16 px-4 lg:px-0 pb-20 w-full max-w-xl">
+                                {children}
+                            </div>
                         </div>
                     </UserProfileProvider>
                 </ AuthProvider>

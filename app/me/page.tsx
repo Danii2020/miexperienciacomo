@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useUserProfile } from "@/app/context/UserProfileContext";
 import { UserDisplay } from "../types/user";
 import { useUserPosts } from "@/hooks/use-user-posts";
+import CustomLink from "../components/CustomLink/CustomLink";
 
 const UserProfilePage = () => {
     const { userProfile, loading:userLoading } = useUserProfile()
@@ -54,13 +55,9 @@ const UserProfilePage = () => {
                     >
                         {userData.showName ? userData.name : "Anónimo"}
                     </Link>
-                    <Link
-                        href={"/create-post"}
-                        className="w-full px-8 py-2 bg-[#404040] hover:bg-black text-white rounded-3xl font-bold text-xl
-                        text-center transition-all duration-300 ease-in-out hover:scale-105"
-                    >
+                    <CustomLink href="/create-post">
                         Crear
-                    </Link>
+                    </CustomLink>
                 </span>
 
             </div>

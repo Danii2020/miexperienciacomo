@@ -52,6 +52,7 @@ const FooterInfo = ({ footerType, professional_role, experience_time, likes, pos
                 <button
                     type="button"
                     onClick={handleOnLikeClick}
+                    className="p-2 rounded-full transition-all duration-300 ease-in-out hover:bg-gray-100 hover:scale-110 hover:text-red-500 active:scale-95 focus:outline-none"
                 >
                     <Favorite fontSize="medium"/>
                 </button>

@@ -31,23 +31,25 @@ export default function Home() {
     if (error) return <p>Error loading post: {error.message}</p>;
 
     return (
-        <main className="flex flex-col items-center justify-center lg:w-1/2 w-full">
-            <ul className="flex flex-col gap-8 w-full">
-                {
-                    posts.map((post) => (
-                        <li key={post.id}>
-                            <Link href={`/posts/${post.slug}`}>
-                                <ExperienceCard
-                                    post={post}
-                                    experience_time={post.user_id.experience_time}
-                                    professional_role={post.user_id.professional_role}
-                                />
-                            </Link>
+        <main className="flex flex-col items-center justify-center w-full">
+            <div className="w-full max-w-xl mb-6">
+                <ul className="flex flex-col gap-8">
+                    {
+                        posts.map((post) => (
+                            <li key={post.id}>
+                                <Link href={`/posts/${post.slug}`}>
+                                    <ExperienceCard
+                                        post={post}
+                                        experience_time={post.user_id.experience_time}
+                                        professional_role={post.user_id.professional_role}
+                                    />
+                                </Link>
 
-                        </li>
-                    ))
-                }
-            </ul>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
         </main>
 
     );

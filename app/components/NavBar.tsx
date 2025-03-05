@@ -18,7 +18,7 @@ const NavBar = () => {
                 />
             )}
             <aside className="fixed z-10 bottom-0 left-0 right-0 h-16 border-t-2 border-black bg-primary flex flex-row items-center justify-around py-2
-                                md:top-0 md:left-0 md:bottom-auto md:h-full md:w-[20%] md:border-r-2 md:border-t-0 md:flex-col md:justify-between md:py-8">
+                                md:h-full md:w-[20%] md:border-r-2 md:border-t-0 md:flex-col md:justify-between md:py-8">
                 <nav className="flex flex-row items-center justify-around w-full px-4 
                                 md:flex-col md:items-end md:space-y-10 md:px-12">
                     <Link href="/" className="text-black font-bold text-2xl hover:underline md:text-4xl">

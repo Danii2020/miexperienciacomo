@@ -8,6 +8,7 @@ import { updateUserProfile } from "@/app/services/userService";
 import { useState, useEffect } from "react";
 import { useUserProfile } from "@/app/context/UserProfileContext";
 import { User } from "@/app/types/user";
+import Button from "@/app/components/Button/Button";
 
 const OnboardingPage = () => {
     const { user, supabase } = useAuth()
@@ -111,12 +112,12 @@ const OnboardingPage = () => {
                         </div>
                     </div>
                 </div>
-                <button
+                <Button
                     type="submit"
-                    className="w-1/3 bg-black text-white py-2 px-4 rounded-xl hover:bg-gray-800 transition text-xl font-bold"
+                    className="w-1/3 rounded-xl"
                 >
                     Guardar
-                </button>
+                </Button>
             </form>
         </main>
     );
