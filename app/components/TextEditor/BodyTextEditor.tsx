@@ -68,7 +68,7 @@ const BodyTextEditor = ({ content, onUpdate }: Props) => {
         <>
             <ToolBar editor={editor} />
             <br />
-            <EditorContent editor={editor} />
+            <EditorContent editor={editor} required/>
         </>
     )
 };

@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export const slugify = (str: string, userId: string) => {
     return str
         .toLowerCase()
@@ -10,3 +12,14 @@ export const slugify = (str: string, userId: string) => {
 export const capitalizeLetter = (str:string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export const showErrorToast = () => {
+    const message = "Ocurrió un error inesperado, inténtalo de nuevo";
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  };

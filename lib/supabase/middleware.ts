@@ -1,14 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { createServerClient } from "@supabase/ssr"
- 
 import { getUserRole } from "@/lib/get-user-role"
- 
+import { getUserProfile } from "@/app/services/userService"
+
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
+  const supabaseResponse = NextResponse.next({
     request,
   })
- 
-  // Create a Supabase client
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -21,9 +20,9 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           )
-          supabaseResponse = NextResponse.next({
-            request,
-          })
+        //   supabaseResponse = NextResponse.next({
+        //     request,
+        //   })
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
           )
@@ -31,16 +30,13 @@ export async function updateSession(request: NextRequest) {
       },
     }
   )
- 
-  // Get the current user from Supabase
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
- 
-  // Get the user's role using the custom getUserRole function
+
   const role = await getUserRole()
- 
-  // Redirect non-admin users trying to access admin pages to the home page
+
   if (
     user &&
     role !== "admin" &&
@@ -50,7 +46,7 @@ export async function updateSession(request: NextRequest) {
     url.pathname = "/"
     return NextResponse.redirect(url)
   }
- 
+
   // Redirect unauthenticated users to sign-in page
   if (
     !user &&
@@ -58,17 +54,26 @@ export async function updateSession(request: NextRequest) {
     !request.nextUrl.pathname.startsWith("/auth")
   ) {
     const url = request.nextUrl.clone()
-    url.pathname = "/signin"
-    url.searchParams.set("next", request.nextUrl.pathname)
-    return NextResponse.redirect(url)
-  }
- 
-  // Redirect authenticated users attempting to access the sign-in page to the home page
-  if (user && request.nextUrl.pathname.startsWith("/signin")) {
-    const url = request.nextUrl.clone()
     url.pathname = "/"
     return NextResponse.redirect(url)
   }
- 
+
+  if (user) {
+    const userData = await getUserProfile(supabase, user.id)
+    const isProfileIncomplete = !userData || 
+                               !userData.professional_role || 
+                               !userData.experience_time
+    if (isProfileIncomplete && !request.nextUrl.pathname.startsWith('/me/onboarding')) {
+        const url = request.nextUrl.clone()
+        url.pathname = "/me/onboarding"
+        return NextResponse.redirect(url)
+    }
+    if (!isProfileIncomplete && request.nextUrl.pathname.startsWith('/me/onboarding')) {
+        const url = request.nextUrl.clone()
+        url.pathname = "/me"
+        return NextResponse.redirect(url)
+    }
+  }
+
   return supabaseResponse
 }

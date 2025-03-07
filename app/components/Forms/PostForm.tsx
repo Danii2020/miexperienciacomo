@@ -13,6 +13,8 @@ import SuccessfulModal from "../Modals/SuccessfulModal";
 import DeleteQuestionModal from "../Modals/DeleteQuestionModal";
 import confetti from "canvas-confetti";
 import Button from "../Button/Button";
+import { ToastContainer } from 'react-toastify';
+import { showErrorToast } from "@/lib/utils";
 
 type Props = {
     post?: PostDatabase | null
@@ -64,45 +66,60 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
 
     const handleSubmitSave = async (e: React.FormEvent) => {
         e.preventDefault();
-        await savePost(supabase, user?.id || "", getPostData())
-        setIsCreateModalOpen(true)
-        confetti({
-            particleCount: 150,
-            spread: 60
-        })
-        setTimeout(() => {
-            router.push("/me")
-        }, 2000)
+        try {
+            await savePost(supabase, user?.id || "", getPostData())
+            setIsCreateModalOpen(true)
+            confetti({
+                particleCount: 150,
+                spread: 60
+            })
+            setTimeout(() => {
+                router.push("/me")
+            }, 2000)
+        } catch (error) {
+            showErrorToast()
+            console.log(error)
+        }
     };
 
     const handleEdit = async () => {
-        console.log(getPostData())
-        await updatePost(supabase, { id: post?.id, ...getPostData() })
-        setIsEditModalOpen(true)
-        confetti({
-            particleCount: 150,
-            spread: 60
-        })
-        setTimeout(() => {
-            router.push("/me")
-        }, 2000)
+        try {
+            await updatePost(supabase, { id: post?.id, ...getPostData() })
+            setIsEditModalOpen(true)
+            confetti({
+                particleCount: 150,
+                spread: 60
+            })
+            setTimeout(() => {
+                router.push("/me")
+            }, 2000)
+        } catch (error) {
+            showErrorToast()
+            console.log(error)
+        }
     }
 
     const handleDelete = async () => {
-        setIsDeleteModalOpen(false)
-        await deletePost(supabase, post?.id || "")
-        setIsSuccessfulDeleteModalOpen(true)
-        confetti({
-            particleCount: 150,
-            spread: 60
-        })
-        setTimeout(() => {
-            router.push("/me")
-        }, 2000)
+        try {
+            setIsDeleteModalOpen(false)
+            await deletePost(supabase, post?.id || "")
+            setIsSuccessfulDeleteModalOpen(true)
+            confetti({
+                particleCount: 150,
+                spread: 60
+            })
+            setTimeout(() => {
+                router.push("/me")
+            }, 2000)
+        } catch (error) {
+            showErrorToast()
+            console.log(error)
+        }
     }
 
     return (
         <>
+            <ToastContainer />
             {isCreateModalOpen && (
                 <SuccessfulModal
                     title="¡Has publicado una experiencia!"

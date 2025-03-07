@@ -6,6 +6,9 @@ import { getPosts } from "./services/postService";
 import { createClient } from "@/lib/supabase/client";
 import { PostDatabase } from "./types/post";
 import Link from "next/link";
+import { showErrorToast } from "@/lib/utils";
+import { ToastContainer } from "react-toastify";
+
 export default function Home() {
     const [posts, setPosts] = useState<PostDatabase[]>([]);
     const [loading, setLoading] = useState(true);
@@ -20,6 +23,7 @@ export default function Home() {
                 setPosts(data as unknown as PostDatabase[]);
             } catch (err) {
                 setError(err as Error);
+                showErrorToast()
             } finally {
                 setLoading(false);
             }
@@ -28,7 +32,14 @@ export default function Home() {
     }, [supabase]);
 
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error loading post: {error.message}</p>;
+    if (error) {
+        return (
+            <>
+                <ToastContainer />
+                <p>Error loading post: {error.message}</p>
+            </>
+        )
+    }
 
     return (
         <main className="flex flex-col items-center justify-center w-full">
