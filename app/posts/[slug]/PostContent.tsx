@@ -7,7 +7,11 @@ import { usePost } from "@/hooks/use-posts"
 
 const PostContent = ({ slug }: { slug: string }) => {
     const { post } = usePost(slug)
-    const sanitizedContent = DOMPurify.sanitize(post?.content || "");
+    const sanitizedContent = DOMPurify.sanitize(post?.content || "", {
+        ADD_TAGS: ["iframe"],
+        ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling']
+    });
+
     return (
         <div className="lg:p-14 py-9 px-6 border-[2px] bg-white border-black rounded-xl focus:outline-none mb-5 w-full max-w-3xl h-fit">
             <Title>

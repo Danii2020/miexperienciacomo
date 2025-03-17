@@ -17,8 +17,9 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={`bg-[#373737] text-white text-lg font-medium py-4 px-8 rounded-full w-full hover:bg-black
-                transition-all duration-300 ease-in-out hover:scale-105 ${className}`}
+      className={`bg-[#373737] py-4 px-8 w-full text-white rounded-xl font-bold text-2xl
+                    transition-all duration-300 ease-in-out hover:bg-[#CFC8C8] hover:text-[#373737] hover:border-[1px]
+                    hover:border-[#373737] hover:scale-105 ${className}`}
       {...props}
     >
       <div className="flex justify-center items-center gap-8">

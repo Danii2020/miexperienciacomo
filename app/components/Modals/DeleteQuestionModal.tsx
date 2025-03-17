@@ -28,7 +28,7 @@ const DeleteQuestionModal = ({ isOpen, closeModal, title, content, onCancel, onD
                     Cancelar
                 </Button>
                 <Button
-                    className="bg-[#F40000]"
+                    className="bg-[#F40000] border-[2px] border-black"
                     type="button"
                     onClick={onDelete}
                 >
