@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import SignInModal from "./Modals/SignInModal";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
@@ -22,7 +23,13 @@ const NavBar = () => {
                 <nav className="flex flex-row items-center justify-around w-full px-4 
                                 md:flex-col md:items-end md:space-y-10 md:px-12">
                     <Link href="/" className="text-black font-bold text-2xl hover:underline md:text-4xl">
-                        LOGO
+                        <Image
+                            className="transition-all duration-300 ease-in-out hover:scale-105"
+                            src="/logo.svg"
+                            alt="Logo"
+                            width={120}
+                            height={120}
+                        />
                     </Link>
                     <Link
                         href="/about"
