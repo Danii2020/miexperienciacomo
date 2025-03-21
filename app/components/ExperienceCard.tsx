@@ -1,7 +1,7 @@
 import FooterInfo from '../components/FooterInfo/FooterInfo'
 import { PostDatabase } from '../types/post';
 
-type Props = {
+interface Props {
     post: PostDatabase
     professional_role: string
     experience_time: string

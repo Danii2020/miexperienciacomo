@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 
-export type Props = {
+export interface Props {
     isOpen: boolean;
     closeModal: () => void;
     children?: React.ReactNode

@@ -24,7 +24,7 @@ const NavBar = () => {
                                 md:flex-col md:items-end md:space-y-10 md:px-12">
                     <Link href="/" className="text-black font-bold text-2xl hover:underline md:text-4xl">
                         <Image
-                            className="transition-all duration-300 ease-in-out hover:scale-105"
+                            className="transition-all duration-300 ease-in-out hover:scale-105 w-12 h-12 md:w-[120px] md:h-[120px]"
                             src="/logo.svg"
                             alt="Logo"
                             width={120}

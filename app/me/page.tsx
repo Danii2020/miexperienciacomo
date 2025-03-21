@@ -51,7 +51,7 @@ const UserProfilePage = () => {
                     />
                     <Link
                         className="text-lg font-medium hover:underline w-full"
-                        href="/me"
+                        href="/me/settings"
                     >
                         {userData.showName ? userData.name : "Anónimo"}
                     </Link>
@@ -63,7 +63,7 @@ const UserProfilePage = () => {
             </div>
             <ul className="flex flex-col gap-8 w-full max-w-xl">
                 {
-                    userPosts.map((post) => (
+                    userPosts.length >= 1 ? (userPosts.map((post) => (
                         <li key={post.id}>
                             <Link href={`/me/posts/${post.slug}`}>
                                 <ExperienceCard
@@ -74,7 +74,11 @@ const UserProfilePage = () => {
                             </Link>
 
                         </li>
-                    ))
+                    ))) : (
+                        <p className="font-normal text-lg mb-2">
+                            Aún no has publicado experiencias, qué tal si le regalas al mundo un poco de tu conocimiento 🤓
+                        </p>
+                    )
                 }
             </ul>
         </main>

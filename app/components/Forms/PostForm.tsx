@@ -16,7 +16,7 @@ import Button from "../Button/Button";
 import { ToastContainer } from 'react-toastify';
 import { showErrorToast } from "@/lib/utils";
 
-type Props = {
+interface Props {
     post?: PostDatabase | null
     isEditForm: boolean;
 }
