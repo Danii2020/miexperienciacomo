@@ -6,7 +6,8 @@ const postUserQuery = `
         *,
         user_id (
             professional_role,
-            experience_time
+            experience_time,
+            name
         )
     `
 

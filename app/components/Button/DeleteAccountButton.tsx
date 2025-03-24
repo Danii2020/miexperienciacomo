@@ -42,7 +42,7 @@ const DeleteAccountButton = () => {
          <ToastContainer />
             {showDeleteAccountModal && (
                     <DeleteQuestionModal
-                        title="¡Va a eliminar tu cuenta!"
+                        title="¡Vas a eliminar tu cuenta!"
                         content="¿Seguro que quieres eliminar tu cuenta y todas tus experiencias? 💀"
                         isOpen={showDeleteAccountModal}
                         closeModal={() => setShowDeleteAccountModa(false)}

@@ -5,10 +5,11 @@ interface Props {
     post: PostDatabase
     professional_role: string
     experience_time: string
+    userName: string
 }
 
 
-const ExperienceCard = ({ post, professional_role, experience_time }:Props) => {
+const ExperienceCard = ({ post, professional_role, experience_time, userName }:Props) => {
     return (
         <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg max-h-96
         transition-all duration-300 ease-in-out hover:scale-105">
@@ -22,6 +23,7 @@ const ExperienceCard = ({ post, professional_role, experience_time }:Props) => {
                 experience_time={experience_time}
                 likes={post.likes || 0}
                 postId={post.id}
+                userName={userName}
             />
         </div>
     );

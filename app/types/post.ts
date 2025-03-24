@@ -12,5 +12,6 @@ export type PostDatabase = Database["public"]["Tables"]["posts"]["Row"] & {
     user_id: {
         professional_role: string
         experience_time: string
+        name: string
     }
 }

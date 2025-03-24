@@ -11,9 +11,10 @@ interface Props {
     experience_time: string;
     likes: number;
     postId: string;
+    userName: string | undefined;
 };
 
-const FooterInfo = ({ footerType, professional_role, experience_time, likes, postId }: Props) => {
+const FooterInfo = ({ footerType, professional_role, experience_time, userName, likes, postId }: Props) => {
     const [numberOfLikes, setNumberOfLikes] = useState<number>(likes || 0);
     const [liked, setLiked] = useState<boolean>(false);
     const supabase = createClient();
@@ -52,6 +53,7 @@ const FooterInfo = ({ footerType, professional_role, experience_time, likes, pos
     return (
         <div className="mt-6 flex items-center justify-between">
             <div>
+            <p className="text-sm font-normal">{userName || "Anónimo"}</p>
                 <p className="text-base font-medium">{professional_role}</p>
                 <p className={`text-sm ${isCard ? "text-gray-200" : "text-gray-800"}`}>{experience_time} de experiencia</p>
             </div>

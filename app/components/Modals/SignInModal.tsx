@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 const SignInModal = ({ isOpen, closeModal }: Props) => {
     const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
@@ -55,6 +56,12 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
             >
                 Inicia sesión
             </Button>
+            <small className="mt-4">
+                Al iniciar sesión estás aceptando los {" "}
+                <Link className="text-sm font-semibold hover:underline" href="/terms" target="blank">
+                    Términos y Condiciones.
+                </Link>
+            </small>
         </TemplateModal>
 
 
