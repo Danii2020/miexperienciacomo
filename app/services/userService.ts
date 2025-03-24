@@ -43,6 +43,7 @@ export const deleteUserAccount = async (
     supabase: SupabaseClient<Database>,
     userId: string
   ) => {
+    
     // 1. Delete posts from the 'posts' table
     const { error: postsError } = await supabase
       .from('posts')

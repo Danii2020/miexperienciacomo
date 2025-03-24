@@ -21,6 +21,11 @@ interface Props {
     isEditForm: boolean;
 }
 
+interface FormErrors {
+    content?: string;
+    // add other form fields if needed
+}
+
 const PostForm: React.FC<Props> = ({ post, isEditForm
 }) => {
     const { user, supabase } = useAuth()
@@ -28,6 +33,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
     const [title, setTitle] = useState<string>(post?.title || '');
     const [summary, setSummary] = useState<string>(post?.summary || '')
     const [content, setContent] = useState<string>(post?.content || "");
+    const [errors, setErrors] = useState<FormErrors>({});
 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
@@ -64,8 +70,22 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
         }
     }
 
+    const validateForm = (): boolean => {
+        const newErrors: FormErrors = {};
+        if (!content.trim()) {
+            newErrors.content = 'El contenido no puede estar vacío';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmitSave = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
+
         try {
             await savePost(supabase, user?.id || "", getPostData())
             setIsCreateModalOpen(true)
@@ -180,9 +200,10 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                         maxLength={90}
                         required
                     />
-                    <div className="p-4 border-[2px] border-black rounded-xl focus:outline-none mb-5">
+                    <div className={`p-4  border-[2px] ${errors.content ? 'border-red-500' : 'border-black'}
+                    rounded-xl focus:outline-none mb-5`}>
                         <BodyTextEditor
-                            content={content}
+                            content={errors.content ? errors.content : content}
                             onUpdate={(newContent) => setContent(newContent)}
                         />
                     </div>
