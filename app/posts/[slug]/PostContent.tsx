@@ -12,6 +12,7 @@ const PostContent = ({ slug }: { slug: string }) => {
         ADD_TAGS: ["iframe"],
         ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling']
     });
+    if (!post) return <p>Loading...</p>
 
     return (
         <PaperContainer>
