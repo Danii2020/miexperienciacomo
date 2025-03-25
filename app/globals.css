@@ -53,8 +53,14 @@ body {
     }
 }
 
-.prose > p > a {
+.prose a {
     color: var(--foreground);
     text-decoration: underline;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.prose > p:empty::before {
+    content: '';
+    display: inline-block;
 }
