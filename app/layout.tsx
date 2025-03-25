@@ -30,7 +30,7 @@ export default function RootLayout({
                         <div className="flex flex-row justify-center items-center">
                             <NavBar />
                             <div className="flex flex-1 flex-col justify-center items-center p-4
-                            gap-16 px-4 lg:px-0 pb-20 w-full md:max-w-md lg:max-w-2xl">
+                            gap-16 px-4 lg:px-0 pb-20 w-full md:max-w-md lg:max-w-3xl">
                                 {children}
                             </div>
                         </div>
