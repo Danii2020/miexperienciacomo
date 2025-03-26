@@ -1,4 +1,5 @@
 import { Database } from "./supabase"
+import { UserDataBase } from "./user"
 
 export type Post = {
     id?: string,
@@ -9,9 +10,5 @@ export type Post = {
 }
 
 export type PostDatabase = Database["public"]["Tables"]["posts"]["Row"] & {
-    user_id: {
-        professional_role: string
-        experience_time: string
-        name: string
-    }
+    user_id: UserDataBase
 }

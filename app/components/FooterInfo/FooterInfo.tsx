@@ -1,20 +1,20 @@
 'use client';
 
 import { saveLikes } from "@/app/services/postService";
+import { UserDataBase } from "@/app/types/user";
 import { createClient } from "@/lib/supabase/client";
 import { Favorite } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Props {
     footerType: "card" | "postBody";
-    professional_role: string;
-    experience_time: string;
+    userData: UserDataBase;
     likes: number;
     postId: string;
-    userName: string | undefined;
 };
 
-const FooterInfo = ({ footerType, professional_role, experience_time, userName, likes, postId }: Props) => {
+const FooterInfo = ({ footerType, userData, likes, postId }: Props) => {
     const [numberOfLikes, setNumberOfLikes] = useState<number>(likes || 0);
     const [liked, setLiked] = useState<boolean>(false);
     const supabase = createClient();
@@ -53,9 +53,18 @@ const FooterInfo = ({ footerType, professional_role, experience_time, userName, 
     return (
         <div className="mt-6 flex items-center justify-between">
             <div>
-            <p className="text-sm font-normal">{userName || "Anónimo"}</p>
-                <p className="text-base font-medium">{professional_role}</p>
-                <p className={`text-sm ${isCard ? "text-gray-200" : "text-gray-800"}`}>{experience_time} de experiencia</p>
+                <span className="flex gap-1 items-center mb-2">
+                    <Image
+                    src={userData.image_url || "/default-user.webp"}
+                    className="rounded-full"
+                    width={35}
+                    height={35}
+                    alt="Profile picture"
+                    />
+                    <p className="text-sm font-normal">{userData.name || "Anónimo"}</p>
+                </span>
+                <p className="text-base font-medium">{userData.professional_role}</p>
+                <p className={`text-sm ${isCard ? "text-gray-200" : "text-gray-800"}`}>{userData.experience_time} de experiencia</p>
             </div>
             <div className="flex items-center gap-1">
                 <button

@@ -3,13 +3,10 @@ import { PostDatabase } from '../types/post';
 
 interface Props {
     post: PostDatabase
-    professional_role: string
-    experience_time: string
-    userName: string
 }
 
 
-const ExperienceCard = ({ post, professional_role, experience_time, userName }:Props) => {
+const ExperienceCard = ({ post }:Props) => {
     return (
         <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg max-h-96
         transition-all duration-300 ease-in-out hover:scale-105">
@@ -19,11 +16,9 @@ const ExperienceCard = ({ post, professional_role, experience_time, userName }:P
             </p>
             <FooterInfo
                 footerType='card'
-                professional_role={professional_role}
-                experience_time={experience_time}
+                userData={post.user_id}
                 likes={post.likes || 0}
                 postId={post.id}
-                userName={userName}
             />
         </div>
     );

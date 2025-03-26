@@ -22,9 +22,7 @@ const PostContent = ({ slug }: { slug: string }) => {
             <div className="prose" dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
             <FooterInfo
                 footerType='postBody'
-                professional_role={post?.user_id.professional_role || ""}
-                experience_time={post?.user_id.experience_time || ""}
-                userName={post?.user_id.name}
+                userData={post.user_id}
                 likes={post?.likes || 0}
                 postId={post?.id || ""}
             />
