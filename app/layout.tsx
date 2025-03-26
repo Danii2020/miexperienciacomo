@@ -12,7 +12,7 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
     title: "Mi experiencia como",
-    description: "Mi experiencia como",
+    description: "Mi experiencia como es una plataforma enfocada en compartir experiencias profesionales que sirvan de aprendizaje para todos aquellos que estan iniciando su carrera.",
 };
 
 export default function RootLayout({

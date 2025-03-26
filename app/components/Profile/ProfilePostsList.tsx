@@ -15,9 +15,6 @@ const ProfilePostsList = ({ userPosts }: ProfilePostsListProps) => {
                         <Link href={`/me/posts/${post.slug}`}>
                             <ExperienceCard
                                 post={post}
-                                experience_time={post.user_id.experience_time}
-                                professional_role={post.user_id.professional_role}
-                                userName={post.user_id.name}
                             />
                         </Link>
                     </li>
