@@ -12,8 +12,31 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
     title: "Mi experiencia como",
-    description: "Mi experiencia como es una plataforma enfocada en compartir experiencias profesionales que sirvan de aprendizaje para todos aquellos que estan iniciando su carrera.",
-};
+    description:
+      "Mi experiencia como es una plataforma enfocada en compartir experiencias profesionales que sirvan de aprendizaje para todos aquellos que están iniciando su carrera.",
+    openGraph: {
+      title: "Mi experiencia como",
+      description:
+        "Una plataforma para compartir experiencias profesionales y lecciones aprendidas en el camino.",
+      url: "https://miexperienciacomo.com",
+      images: [
+        {
+          url: "/logo.png",
+          width: 1200,
+          height: 630,
+          alt: "Vista previa de Mi experiencia como",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Mi experiencia como",
+      description:
+        "Descubre experiencias profesionales y aprende de las vivencias de quienes ya han recorrido el camino.",
+      images: ["/logo.png"],
+    },
+  };
+  
 
 export default function RootLayout({
     children,

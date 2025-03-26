@@ -29,6 +29,7 @@ const NavBar = () => {
                             alt="Logo"
                             width={120}
                             height={120}
+                            priority={true}
                         />
                     </Link>
                     <Link
