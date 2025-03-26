@@ -7,6 +7,7 @@ const postUserQuery = `
         user_id (
             professional_role,
             experience_time,
+            image_url,
             name
         )
     `
