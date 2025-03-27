@@ -64,3 +64,7 @@ body {
     content: '';
     display: inline-block;
 }
+
+a:hover {
+    cursor: pointer;
+}

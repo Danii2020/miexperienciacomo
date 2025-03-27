@@ -19,7 +19,7 @@ const Button = ({
     <button
       className={`bg-[#373737] py-4 px-8 w-full text-white rounded-xl font-bold text-2xl
                     transition-all duration-300 ease-in-out hover:bg-[#CFC8C8] hover:text-[#373737] hover:border-[1px]
-                    hover:border-[#373737] hover:scale-105 ${className}`}
+                    hover:border-[#373737] hover:scale-105 hover:cursor-pointer ${className}`}
       {...props}
     >
       <div className="flex justify-center items-center gap-8">
