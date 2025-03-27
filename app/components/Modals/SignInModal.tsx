@@ -58,7 +58,7 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
             </Button>
             <small className="mt-4">
                 Al iniciar sesión estás aceptando los {" "}
-                <Link className="text-sm font-semibold hover:underline" href="/terms" target="blank">
+                <Link className="text-sm text-center font-semibold hover:underline" href="/terms" target="blank">
                     Términos y Condiciones.
                 </Link>
             </small>
