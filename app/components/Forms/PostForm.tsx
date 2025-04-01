@@ -15,6 +15,7 @@ import confetti from "canvas-confetti";
 import Button from "../Button/Button";
 import { ToastContainer } from 'react-toastify';
 import { showErrorToast } from "@/lib/utils";
+import TextArea from "../Input/TextArea";
 
 interface Props {
     post?: PostDatabase | null
@@ -185,19 +186,19 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                     </p>
                 </div>
                 <div>
-                    <Input
+                    <TextArea
                         defaultValue={title}
                         onChange={(e) => handleOnTitleChange(e)}
                         placeholder="Mi experiencia como programador..."
-                        className="mb-2"
+                        className="mb-2 w-full resize-none"
                         required
                     />
                     <Input
                         defaultValue={summary}
                         onChange={(e) => handleOnSummaryChange(e)}
-                        placeholder="Pequeño resumen de tu experiencia (max 90 caracteres)"
+                        placeholder="Pequeño resumen de tu experiencia (max 100 caracteres)"
                         className="font-medium text-xl h-24"
-                        maxLength={90}
+                        maxLength={100}
                         required
                     />
                     <div className={`p-4  border-[2px] ${errors.content ? 'border-red-500' : 'border-black'}
