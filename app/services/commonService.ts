@@ -7,6 +7,7 @@ export const saveContactData = async (
         email: string,
         name: string,
         comment: string
+        privacyPolicyAccepted: boolean
     }
 ) => {
     const { error } = await supabase
@@ -14,7 +15,8 @@ export const saveContactData = async (
         .insert({
             email: data.email,
             name: data.name,
-            comment: data.comment
+            comment: data.comment,
+            privacypolicyaccepted: data.privacyPolicyAccepted
         });
     if (error) {
         throw error;

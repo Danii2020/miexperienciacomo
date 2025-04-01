@@ -14,16 +14,19 @@ export type Database = {
           comment: string | null
           email: string
           name: string
+          privacypolicyaccepted: boolean | null
         }
         Insert: {
           comment?: string | null
           email: string
           name: string
+          privacypolicyaccepted?: boolean | null
         }
         Update: {
           comment?: string | null
           email?: string
           name?: string
+          privacypolicyaccepted?: boolean | null
         }
         Relationships: []
       }

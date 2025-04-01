@@ -10,23 +10,27 @@ import { useAuth } from "../context/AuthContext";
 import confetti from "canvas-confetti";
 import { ToastContainer } from "react-toastify";
 import SuccessfulModal from "../components/Modals/SuccessfulModal";
+import Link from "next/link";
 
 const ContactForm = () => {
     const { supabase } = useAuth()
     const [formData, setFormData] = useState<Contact>({
         email: "",
         name: "",
-        comment: ""
+        comment: "",
+        privacyPolicyAccepted: false
     });
-
     const [isSuccessfulModalOpen, setIsSuccessfulModalOpen] = useState<boolean>(false);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
+        const { name, type } = e.target;
+        const value = type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
+        console.log(value)
         setFormData(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
+            ...prev ,
+            [name]: value
         }));
     };
 
@@ -104,6 +108,22 @@ const ContactForm = () => {
                         onChange={handleInputChange}
                         required
                     />
+                </div>
+                <div className="mb-4 flex items-start gap-2">
+                    <input
+                        type="checkbox"
+                        name="privacyPolicyAccepted"
+                        checked={formData.privacyPolicyAccepted}
+                        onChange={handleInputChange}
+                        required
+                        className="mt-1 h-4 w-4 accent-black cursor-pointer"
+                    />
+                    <label
+                        htmlFor="privacyPolicyAccepted"
+                        className="text-lg cursor-pointer"
+                    >
+                        He leído y acepto la <Link href="/privacy" className="underline font-medium hover:text-gray-600" target="_blank" rel="noopener noreferrer">política de privacidad</Link>
+                    </label>
                 </div>
                 <Button
                     type="submit"
