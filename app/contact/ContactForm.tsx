@@ -27,7 +27,6 @@ const ContactForm = () => {
     ) => {
         const { name, type } = e.target;
         const value = type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
-        console.log(value)
         setFormData(prev => ({
             ...prev ,
             [name]: value

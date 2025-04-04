@@ -44,7 +44,6 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
     const router = useRouter()
 
     useEffect(() => {
-        console.log(post?.summary)
         setTitle(post?.title || '');
         setContent(post?.content || '');
         setSummary(post?.summary || '');
