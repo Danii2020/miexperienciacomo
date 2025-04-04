@@ -65,6 +65,11 @@ body {
     display: inline-block;
 }
 
+.prose > ul > li > p:empty::before {
+    content: '';
+    display: inline-block;
+}
+
 a:hover {
     cursor: pointer;
 }
