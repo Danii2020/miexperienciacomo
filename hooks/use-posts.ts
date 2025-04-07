@@ -22,7 +22,7 @@ export function usePost(slug:string) {
       }
     }
     fetchPost(slug)
-  }, [slug, supabaseClient])
+  }, [slug])
 
   return { loading, error, post }
 }

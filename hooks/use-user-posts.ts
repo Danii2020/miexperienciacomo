@@ -26,7 +26,7 @@ export function useUserPosts(userId: string) {
     if (userId) {
       fetchPosts()
     }
-  }, [userId, supabaseClient])
+  }, [userId])
 
   return { loading, error, userPosts }
 }
