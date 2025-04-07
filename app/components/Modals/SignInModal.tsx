@@ -4,7 +4,7 @@ import Title from "../Typography/Title";
 import GoogleIcon from '@mui/icons-material/Google';
 import LoopIcon from '@mui/icons-material/Loop';
 import TemplateModal, { Props } from "./TemplateModal";
-import { createClient } from "@/lib/supabase/client"
+import { supabaseClient } from "@/lib/supabase/client"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react";
 import Button from "../Button/Button";
@@ -12,7 +12,6 @@ import Link from "next/link";
 
 const SignInModal = ({ isOpen, closeModal }: Props) => {
     const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
-    const supabase = createClient()
 
     const searchParams = useSearchParams()
 
@@ -21,7 +20,7 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
     async function signInWithGoogle() {
         setIsGoogleLoading(true)
         try {
-            const { error } = await supabase.auth.signInWithOAuth({
+            const { error } = await supabaseClient.auth.signInWithOAuth({
                 provider: "google",
                 options: {
                     redirectTo: `${window.location.origin}/auth/callback${next ? `?next=${encodeURIComponent(next)}` : ""

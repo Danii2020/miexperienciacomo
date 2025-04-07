@@ -2,7 +2,7 @@
 
 import { saveLikes } from "@/app/services/postService";
 import { UserDataBase } from "@/app/types/user";
-import { createClient } from "@/lib/supabase/client";
+import { supabaseClient } from "@/lib/supabase/client";
 import { Favorite } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -17,7 +17,6 @@ interface Props {
 const FooterInfo = ({ footerType, userData, likes, postId }: Props) => {
     const [numberOfLikes, setNumberOfLikes] = useState<number>(likes || 0);
     const [liked, setLiked] = useState<boolean>(false);
-    const supabase = createClient();
 
     // On mount, check if user already liked the post (using localStorage)
     useEffect(() => {
@@ -42,7 +41,7 @@ const FooterInfo = ({ footerType, userData, likes, postId }: Props) => {
             setLiked(true);
         }
         setNumberOfLikes(updatedLikes);
-        const { success } = await saveLikes(supabase, updatedLikes, postId);
+        const { success } = await saveLikes(supabaseClient, updatedLikes, postId);
         if (success) {
             console.log("Likes updated!");
         }

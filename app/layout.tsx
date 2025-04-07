@@ -11,6 +11,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://miexperienciacomo.com'),
     title: "Mi experiencia como",
     description:
       "Mi experiencia como es una plataforma enfocada en compartir experiencias profesionales que sirvan de aprendizaje para todos aquellos que están iniciando su carrera.",

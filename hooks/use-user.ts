@@ -3,7 +3,7 @@ import { AuthError, Session, User } from "@supabase/supabase-js"
 import { jwtDecode } from "jwt-decode"
 import type { JwtPayload } from "jwt-decode"
  
-import { createClient } from "@/lib/supabase/client"
+import { supabaseClient } from "@/lib/supabase/client"
  
 type SupabaseJwtPayload = JwtPayload & {
   app_metadata: {
@@ -17,7 +17,6 @@ export function useUser() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<AuthError | null>(null)
   const [role, setRole] = useState<string | null>(null)
-  const supabase = createClient()
  
   useEffect(() => {
     async function fetchUser() {
@@ -41,7 +40,7 @@ export function useUser() {
       }
     }
     fetchUser()
-  }, [supabase.auth])
+  }, [supabaseClient.auth])
  
   return { loading, error, session, user, role }
 }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ExperienceCard from "../ExperienceCard";
 import { getPosts } from "@/app/services/postService";
-import { createClient } from "@/lib/supabase/client";
+import { supabaseClient } from "@/lib/supabase/client";
 import { PostDatabase } from "@/app/types/post";
 import Link from "next/link";
 import { showErrorToast } from "@/lib/utils";
@@ -14,12 +14,10 @@ const PostsList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
 
-    const supabase = createClient()
-
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const data = await getPosts(supabase);
+                const data = await getPosts(supabaseClient);
                 setPosts(data as unknown as PostDatabase[]);
             } catch (err) {
                 setError(err as Error);
@@ -29,7 +27,7 @@ const PostsList = () => {
             }
         }
         fetchPosts();
-    }, [supabase]);
+    }, [supabaseClient]);
 
     if (loading) return <p>Loading...</p>;
     if (error) {

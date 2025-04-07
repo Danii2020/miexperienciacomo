@@ -8,7 +8,7 @@ interface Props {
 
 const ExperienceCard = ({ post }:Props) => {
     return (
-        <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg max-h-96
+        <div className="bg-[#404040] rounded-2xl py-6 px-4 text-white shadow-lg h-fit
         transition-all duration-300 ease-in-out hover:scale-105">
             <h2 className="text-3xl font-bold">{post.title}</h2>
             <p className="mt-4 text-lg text-gray-300">

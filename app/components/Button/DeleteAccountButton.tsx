@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import DeleteQuestionModal from "../Modals/DeleteQuestionModal";
-import { deleteUserAccount } from "@/app/services/userService";
 import { useAuth } from "@/app/context/AuthContext";
 import { showErrorToast } from "@/lib/utils";
 import confetti from "canvas-confetti";
@@ -11,31 +10,36 @@ import SuccessfulModal from "../Modals/SuccessfulModal";
 import { useRouter } from "next/navigation";
 
 const DeleteAccountButton = () => {
-    const { user, supabase, signOut } = useAuth()
+    const { signOut } = useAuth()
     const [showDeleteAccountModal, setShowDeleteAccountModa] = useState<boolean>(false);
     const [isSuccessfulDeleteModalOpen, setIsSuccessfulDeleteModalOpen] = useState<boolean>(false);
 
     const router = useRouter()
-
     const handleDelete = async () => {
         try {
-            const { success } = await deleteUserAccount(supabase, user?.id || "")
-            if (success) {
-                setIsSuccessfulDeleteModalOpen(true)
-                confetti({
-                    particleCount: 150,
-                    spread: 60
-                })
-                setTimeout(() => {
-                    router.push("/")
-                }, 2000)
-                await signOut()
-            }
+          const response = await fetch('/api/admin', {
+            method: 'DELETE'
+          });
+          const result = await response.json();
+          if (response.ok && result.success) {
+            setIsSuccessfulDeleteModalOpen(true);
+            confetti({
+              particleCount: 150,
+              spread: 60
+            });
+            setTimeout(() => {
+              router.push("/");
+            }, 2000);
+            await signOut();
+          } else {
+            showErrorToast();
+            console.error("Deletion error:", result.error);
+          }
         } catch (error) {
-            showErrorToast()
-            console.log(error)
+          showErrorToast();
+          console.error("Unexpected error:", error);
         }
-    }
+      };
 
     return (
         <>
