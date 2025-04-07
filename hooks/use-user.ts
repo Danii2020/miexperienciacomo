@@ -24,7 +24,7 @@ export function useUser() {
         const {
           data: { session },
           error,
-        } = await supabase.auth.getSession()
+        } = await supabaseClient.auth.getSession()
         if (error) throw error
  
         if (session) {
@@ -40,7 +40,7 @@ export function useUser() {
       }
     }
     fetchUser()
-  }, [supabaseClient.auth])
+  }, [])
  
   return { loading, error, session, user, role }
 }
