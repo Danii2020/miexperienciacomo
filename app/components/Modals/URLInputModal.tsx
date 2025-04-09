@@ -34,12 +34,14 @@ const URLInputModal = ({ isOpen, onClose, handleInsert, type, placeholder }: URL
                     type="button"
                     onClick={onClose}
                     className="bg-[#F40000]"
+                    aria-label="cancelar"
                 >
                     Cancelar
                 </Button>
                 <Button
                     type="button"
                     onClick={() => handleInsert(url)}
+                    aria-label="insertar"
                 >
                     Insertar
                 </Button>

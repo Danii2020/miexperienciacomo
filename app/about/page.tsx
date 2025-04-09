@@ -43,6 +43,7 @@ const AboutPage = () => {
                 "
                     type="button"
                     onClick={() => setIsSignInModalOpen(true)}
+                    aria-label="comparte experiencias"
                 >
                     Comparte experiencias
                     <ArrowForwardIcon fontSize="large" className="fill-current" />

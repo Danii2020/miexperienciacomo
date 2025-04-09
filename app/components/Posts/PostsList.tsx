@@ -27,7 +27,7 @@ const PostsList = () => {
             }
         }
         fetchPosts();
-    }, [supabaseClient]);
+    }, []);
 
     if (loading) return <p>Loading...</p>;
     if (error) {

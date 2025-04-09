@@ -140,6 +140,7 @@ const OnboardingForm = () => {
                 <Button
                     type="submit"
                     className="w-1/3 rounded-xl"
+                    aria-label="guardar"
                 >
                     Guardar
                 </Button>

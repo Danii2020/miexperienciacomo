@@ -213,6 +213,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                         <Button
                             type="submit"
                             className="rounded-xl"
+                            aria-label="publicar"
                         >
                             Publicar
                         </Button>
@@ -222,6 +223,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                                 className="rounded-xl border-[2px] border-black"
                                 type="button"
                                 onClick={handleEdit}
+                                aria-label="editar"
                             >
                                 Editar
                             </Button>
@@ -229,6 +231,7 @@ const PostForm: React.FC<Props> = ({ post, isEditForm
                                 className="bg-[#F40000] border-[2px] border-black rounded-xl"
                                 type="button"
                                 onClick={() => setIsDeleteModalOpen(true)}
+                                aria-label="eliminar"
                             >
                                 Eliminar
                             </Button>

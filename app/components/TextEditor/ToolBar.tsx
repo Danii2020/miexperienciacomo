@@ -81,24 +81,28 @@ const ToolBar = ({ editor }: ToolBarProps) => {
                     <ToolbarButton
                         onClick={() => editor.chain().focus().toggleBold().run()}
                         selected={editor.isActive("bold")}
+                        aria-label="bold"
                     >
                         <FormatBoldIcon />
                     </ToolbarButton>
                     <ToolbarButton
                         onClick={() => editor.chain().focus().toggleItalic().run()}
                         selected={editor.isActive("italic")}
+                        aria-label="italic"
                     >
                         <FormatItalicIcon />
                     </ToolbarButton>
                     <ToolbarButton
                         onClick={() => editor.chain().focus().toggleUnderline().run()}
                         selected={editor.isActive("underline")}
+                        aria-label="underline"
                     >
                         <FormatUnderlinedIcon />
                     </ToolbarButton>
                     <ToolbarButton
                         onClick={() => editor.chain().focus().toggleStrike().run()}
                         selected={editor.isActive("strike")}
+                        aria-label="strike"
                     >
                         <FormatStrikethroughIcon />
                     </ToolbarButton>
@@ -109,21 +113,23 @@ const ToolBar = ({ editor }: ToolBarProps) => {
                     <ToolbarButton
                         onClick={() => editor.chain().focus().toggleCode().run()}
                         selected={editor.isActive("code")}
+                        aria-label="code"
                     >
                         <CodeIcon />
                     </ToolbarButton>
                     <ToolbarButton
                         onClick={() => editor.chain().focus().unsetAllMarks().run()}
+                        aria-label="clear"
                     >
                         <FormatClearIcon />
                     </ToolbarButton>
-                    <ToolbarButton onClick={setUnsetLink}>
+                    <ToolbarButton onClick={setUnsetLink} aria-label="link">
                         {editor.isActive("link") ? <LinkOffIcon /> : <InsertLinkIcon />}
                     </ToolbarButton>
-                    <ToolbarButton onClick={() => setShowImageModal(true)}>
+                    <ToolbarButton onClick={() => setShowImageModal(true)} aria-label="image">
                         <AddPhotoAlternateIcon />
                     </ToolbarButton>
-                    <ToolbarButton onClick={() => setShowVideoModal(true)}>
+                    <ToolbarButton onClick={() => setShowVideoModal(true)} aria-label="video">
                         <YouTubeIcon />
                     </ToolbarButton>
                 </div>
@@ -134,7 +140,8 @@ const ToolBar = ({ editor }: ToolBarProps) => {
                         onClick={() =>
                             editor.chain().focus().toggleHeading({ level: 2 }).run()
                         }
-                        selected={editor.isActive("heading2")}>
+                        selected={editor.isActive("heading2")}
+                    >
                         h2
                     </ToolbarButton>
                     <ToolbarButton

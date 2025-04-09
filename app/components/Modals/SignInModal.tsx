@@ -52,6 +52,7 @@ const SignInModal = ({ isOpen, closeModal }: Props) => {
                 isLoading={isGoogleLoading}
                 icon={<GoogleIcon />}
                 loadingIcon={<LoopIcon className="mr-2 size-4 animate-spin" />}
+                aria-label="inicia sesión"
             >
                 Inicia sesión
             </Button>

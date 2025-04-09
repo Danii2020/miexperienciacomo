@@ -70,6 +70,7 @@ const FooterInfo = ({ footerType, userData, likes, postId }: Props) => {
                     type="button"
                     onClick={handleOnLikeClick}
                     className={`p-2 rounded-full transition-all duration-300 ease-in-out hover:bg-gray-100 hover:scale-110 active:scale-95 focus:outline-none ${liked ? "text-red-500" : ""}`}
+                    aria-label="like"
                 >
                     <Favorite fontSize="medium" />
                 </button>

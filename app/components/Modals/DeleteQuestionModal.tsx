@@ -24,6 +24,7 @@ const DeleteQuestionModal = ({ isOpen, closeModal, title, content, onCancel, onD
                 <Button
                     type="button"
                     onClick={onCancel}
+                    aria-label="cancelar"
                 >
                     Cancelar
                 </Button>
@@ -31,6 +32,7 @@ const DeleteQuestionModal = ({ isOpen, closeModal, title, content, onCancel, onD
                     className="bg-[#F40000] border-[2px] border-black"
                     type="button"
                     onClick={onDelete}
+                    aria-label="eliminar"
                 >
                     Eliminar
                 </Button>
