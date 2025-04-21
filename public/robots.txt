@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/*
+
+# Host
+Host: https://miexperienciacomo.com
+
+# Sitemaps
+Sitemap: https://miexperienciacomo.com/sitemap.xml
