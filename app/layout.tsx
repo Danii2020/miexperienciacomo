@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./context/AuthContext";
 import { UserProfileProvider } from "./context/UserProfileContext";
+import { Analytics } from "@vercel/analytics/next"
 
 const openSans = Open_Sans({
     variable: "--font-open-sans",
@@ -56,6 +57,7 @@ export default function RootLayout({
                             <div className="flex flex-1 flex-col justify-center items-center p-4
                             gap-16 px-4 lg:px-0 pb-20 w-full md:max-w-md lg:max-w-3xl">
                                 {children}
+                                <Analytics />
                             </div>
                         </div>
                     </UserProfileProvider>

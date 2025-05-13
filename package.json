@@ -24,6 +24,7 @@
     "@tiptap/pm": "^2.10.4",
     "@tiptap/react": "^2.10.4",
     "@tiptap/starter-kit": "^2.10.4",
+    "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.3",
     "client-only": "^0.0.1",
     "dompurify": "^3.2.4",
